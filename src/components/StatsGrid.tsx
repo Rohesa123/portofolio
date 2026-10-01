@@ -5,44 +5,40 @@ import { useLang } from "../i18n/languageContext";
 export default function StatsGrid() {
   const { snapshot, status } = useGithub();
   const { t } = useLang();
-  const isLoading = status === "loading";
 
   const rel = formatRelative(snapshot.fetchedAt, t.rel);
   const statusMeta = {
-    live: { dot: "bg-leaf", text: "text-leaf", label: t.stats.live },
-    cached: { dot: "bg-amber-400", text: "text-amber-400", label: t.stats.cached(rel) },
-    loading: { dot: "bg-mist animate-pulse", text: "text-mist", label: t.stats.loading },
-    static: { dot: "bg-mist", text: "text-mist", label: t.stats.static },
+    live: { mark: "bg-brass", text: "text-ash", label: t.stats.live },
+    cached: { mark: "bg-alert", text: "text-alert", label: t.stats.cached(rel) },
+    loading: { mark: "bg-ash animate-pulse", text: "text-ash", label: t.stats.loading },
+    static: { mark: "bg-ash", text: "text-ash", label: t.stats.static },
   }[status];
 
   return (
-    <section className="mx-auto max-w-5xl px-6">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+    <section className="mx-auto max-w-5xl px-6" aria-label="GitHub">
+      {/* Deret angka dibaca seperti panel instrumen: garis 1px lahir dari gap
+          pada latar `rule`, jadi rapi di semua breakpoint. Tiap sel diregangkan
+          penuh lalu isinya dipisah atas–bawah, supaya angkanya tetap sebaris
+          walau ada label yang pecah jadi dua baris. */}
+      <dl className="hairline-grid m-0 grid grid-cols-2 border border-rule sm:grid-cols-4">
         {statFields.map((f) => (
-          <div
-            key={f.key}
-            className="glass group relative overflow-hidden rounded-2xl p-5 text-center transition hover:-translate-y-1"
-          >
-            <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-leaf/60 to-transparent opacity-0 transition group-hover:opacity-100" />
-            <div
-              className={`font-display text-3xl font-bold text-gradient sm:text-4xl ${
-                isLoading ? "animate-pulse" : ""
+          <div key={f.key} className="flex h-full flex-col justify-between gap-3 bg-ink px-5 py-6">
+            <dt className="spec-label">{t.stats[f.labelKey]}</dt>
+            <dd
+              className={`nameplate m-0 text-[2rem] leading-none text-bone tabular-nums ${
+                status === "loading" ? "opacity-50" : ""
               }`}
             >
               {snapshot[f.key]}
-            </div>
-            <div className="mt-1 text-[11px] uppercase tracking-wider text-mist">
-              {t.stats[f.labelKey]}
-            </div>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
 
-      {/* indikator sumber data */}
-      <div className="mt-4 flex items-center justify-center gap-2 text-xs">
-        <span className={`h-2 w-2 rounded-full ${statusMeta.dot}`} />
+      <p className="mt-3 flex items-center gap-2 font-mono text-[0.6875rem] text-ash">
+        <span className={`h-1.5 w-1.5 shrink-0 ${statusMeta.mark}`} aria-hidden />
         <span className={statusMeta.text}>{statusMeta.label}</span>
-      </div>
+      </p>
     </section>
   );
 }

@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider>
       <LanguageProvider>
         <GithubProvider>
-          <div className="min-h-screen bg-ink text-fog">
+          <div className="min-h-screen bg-ink text-bone">
             <Navbar />
             <main>
               <ProfileHeader />

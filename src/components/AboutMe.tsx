@@ -5,35 +5,28 @@ export default function AboutMe() {
   const { t } = useLang();
 
   return (
-    <section id="tentang" className="relative scroll-mt-24 py-20">
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-      <div className="relative mx-auto max-w-5xl px-6">
-        <SectionTitle kicker={t.about.kicker} title={t.about.title} />
+    <section id="tentang" className="mx-auto max-w-5xl scroll-mt-28 px-6 py-24 md:scroll-mt-20">
+      <SectionTitle kicker={t.about.kicker} title={t.about.title} />
 
-        <p className="mb-6 max-w-2xl text-lg leading-relaxed text-fog/85">
-          {t.about.bio}
-        </p>
-        <p className="mb-10 max-w-2xl border-l-2 border-leaf/40 pl-4 text-base italic leading-relaxed text-mist">
-          {t.about.intro}
-        </p>
-
-        {/* bento grid asimetris */}
-        <div className="grid gap-4 md:grid-cols-2">
-          {t.about.points.map((p, i) => (
-            <div
-              key={p.title}
-              className="glass group relative overflow-hidden rounded-3xl p-7 transition hover:-translate-y-1"
-            >
-              <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-lime via-leaf to-mint opacity-70" />
-              <span className="font-mono text-xs text-leaf/60">0{i + 1}</span>
-              <h3 className="mt-2 font-display text-xl font-semibold text-fog">
-                {p.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-mist">{p.body}</p>
-            </div>
-          ))}
-        </div>
+      <div className="grid gap-x-14 gap-y-8 md:grid-cols-[1fr_1fr]">
+        <p className="m-0 text-lg leading-relaxed text-bone">{t.about.intro}</p>
+        <p className="m-0 text-[0.9375rem] leading-relaxed text-ash">{t.about.bio}</p>
       </div>
+
+      {/* Daftar istilah — pasangan judul/keterangan, bukan kartu berjejer. */}
+      <dl className="m-0 mt-14">
+        {t.about.points.map((p) => (
+          <div
+            key={p.title}
+            className="grid gap-x-10 gap-y-2 border-t border-rule py-6 md:grid-cols-[minmax(0,14rem)_1fr]"
+          >
+            <dt className="heading text-base text-bone">{p.title}</dt>
+            <dd className="m-0 max-w-2xl text-[0.9375rem] leading-relaxed text-ash">
+              {p.body}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }

@@ -1,84 +1,50 @@
 @import "tailwindcss";
 
 /* ===========================================================================
-   Tema modern — dark netral (charcoal kebiruan) dengan aksen emerald → teal.
+   Tema: "spec sheet" — hitam pekat, teks bone hangat, satu aksen kuningan.
+   Bukan neon: aksen brass dipakai HEMAT (garis aktif, angka penting, fokus).
    Mendukung mode GELAP (default) & TERANG via class `.light` di <html>.
-   Token warna di-flip lewat CSS variable, jadi utility seperti `bg-ink` /
-   `text-fog` otomatis ikut berubah tanpa menulis ulang ratusan class.
    =========================================================================== */
 @theme {
-  --color-ink: #0d0f13; /* latar utama */
-  --color-surface: #14171c;
-  --color-elevated: #1b1f26;
+  --color-ink: #08090a; /* latar utama — hitam pekat */
+  --color-panel: #0e1011; /* panel yang nyaris rata dengan latar */
+  --color-raise: #16181a; /* hover / bidang terangkat */
 
-  --color-leaf: #3ecf8e; /* primary — emerald */
-  --color-mint: #2dd4bf; /* sekunder — teal */
-  --color-lime: #6ee7b7; /* highlight terang untuk gradient */
-  --color-fog: #e8ebe9; /* teks utama */
-  --color-mist: #98a2a4; /* teks redup */
-  --color-line: rgba(255, 255, 255, 0.1); /* border halus */
+  --color-bone: #eceae4; /* teks utama — putih hangat, bukan putih biru */
+  --color-ash: #8a8d8f; /* teks redup */
+  --color-brass: #c8a45c; /* aksen tunggal — kuningan tua, bukan neon */
+  --color-rule: rgba(236, 234, 228, 0.11); /* hairline */
+  --color-alert: #d98b6a; /* khusus state error form */
 
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-
-  --animate-spin-slow: spin 8s linear infinite;
-  --animate-float: float 7s ease-in-out infinite;
-  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
-  --animate-drift: drift 18s ease-in-out infinite;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
-/* Variabel non-token (dipakai di .glass, .bg-grid, scrollbar, dll) — DARK */
+/* Variabel non-token */
 :root {
-  --glass-bg: rgba(27, 31, 38, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.07);
-  --glass-border-hover: rgba(62, 207, 142, 0.35);
-  --grid-line: rgba(62, 207, 142, 0.045);
-  --text-grad: linear-gradient(120deg, #6ee7b7, #3ecf8e 45%, #2dd4bf);
-  --scroll-thumb: #2a2f37;
-  --scroll-thumb-hover: #3a414b;
-  --avatar-vignette: rgba(13, 15, 19, 0.6);
-  --selection-bg: rgba(62, 207, 142, 0.25);
+  --scroll-thumb: #24272a;
+  --scroll-thumb-hover: #34383c;
+  --selection-bg: rgba(200, 164, 92, 0.28);
+  --photo-filter: grayscale(1) contrast(1.08) brightness(0.92);
 }
 
-/* ====== MODE TERANG — override token & variabel ====== */
+/* ====== MODE TERANG — kertas hangat, kuningan digelapkan agar kontras ====== */
 :root.light {
-  --color-ink: #f5f7f4;
-  --color-surface: #ffffff;
-  --color-elevated: #ffffff;
+  --color-ink: #f4f2ec;
+  --color-panel: #ffffff;
+  --color-raise: #eae7de;
 
-  --color-leaf: #0f9d6b; /* emerald lebih gelap → kontras di latar terang */
-  --color-mint: #0d9488;
-  --color-lime: #34c98a;
-  --color-fog: #16191c; /* teks gelap */
-  --color-mist: #586066;
-  --color-line: rgba(15, 23, 20, 0.12);
+  --color-bone: #14161a;
+  --color-ash: #5c5f63;
+  --color-brass: #7a5f22;
+  --color-rule: rgba(20, 22, 26, 0.14);
+  --color-alert: #a04a22;
 
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(15, 23, 20, 0.1);
-  --glass-border-hover: rgba(15, 157, 107, 0.45);
-  --grid-line: rgba(15, 157, 107, 0.07);
-  --text-grad: linear-gradient(120deg, #0f9d6b, #0d9488);
-  --scroll-thumb: #cfd6cf;
-  --scroll-thumb-hover: #b4bdb4;
-  --avatar-vignette: rgba(245, 247, 244, 0.55);
-  --selection-bg: rgba(15, 157, 107, 0.18);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.08); }
-}
-
-@keyframes drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -30px) scale(1.1); }
-  66% { transform: translate(-30px, 20px) scale(0.95); }
+  --scroll-thumb: #cdc9bd;
+  --scroll-thumb-hover: #b5b0a2;
+  --selection-bg: rgba(122, 95, 34, 0.2);
+  --photo-filter: grayscale(1) contrast(1.02) brightness(1.02);
 }
 
 html {
@@ -89,54 +55,112 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-sans);
-  color: var(--color-fog);
+  color: var(--color-bone);
   background-color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* ---- Utility classes yang dipakai berulang ---- */
 @layer components {
-  /* kartu kaca (glassmorphism) — warna mengikuti tema */
-  .glass {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    transition: background-color 0.3s ease, border-color 0.2s ease;
-  }
-  .glass:hover {
-    border-color: var(--glass-border-hover);
+  /* Nama & judul: Archivo dilebarkan (sumbu wdth) — terbaca seperti plat nama
+     yang dicetak di perangkat, bukan headline template. */
+  .nameplate {
+    font-family: var(--font-display);
+    font-variation-settings: "wdth" 118;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 
-  /* teks gradient (mengikuti tema) */
-  .text-gradient {
-    background-image: var(--text-grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .heading {
+    font-family: var(--font-display);
+    font-variation-settings: "wdth" 110;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
-  /* grid halus untuk latar */
-  .bg-grid {
-    background-image:
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 48px 48px;
-    -webkit-mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 35%, transparent 100%);
-    mask-image: radial-gradient(ellipse 75% 55% at 50% 0%, #000 35%, transparent 100%);
+  /* Label metadata ala dokumen spesifikasi */
+  .spec-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ash);
+  }
+
+  /* Garis hairline dipakai sebagai kisi: container ber-`gap-px` + latar rule,
+     tiap sel ber-latar ink → garis 1px otomatis rapi di semua breakpoint. */
+  .hairline-grid {
+    background-color: var(--color-rule);
+    gap: 1px;
+  }
+
+  /* Baris tautan yang digeser di mobile — tetap bisa di-scroll, tanpa batang. */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 }
 
-/* scrollbar tipis */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--color-ink); }
+/* Satu momen gerak saat halaman dibuka — bukan animasi ambient terus-menerus */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Fokus keyboard selalu terlihat */
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
 ::-webkit-scrollbar-thumb {
   background: var(--scroll-thumb);
+  border: 3px solid var(--color-ink);
   border-radius: 9999px;
-  border: 2px solid var(--color-ink);
 }
-::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-thumb-hover);
+}
 
-/* aksen seleksi teks */
-::selection { background: var(--selection-bg); color: var(--color-fog); }
+::selection {
+  background: var(--selection-bg);
+  color: var(--color-bone);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

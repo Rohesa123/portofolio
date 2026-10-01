@@ -4,38 +4,36 @@ import SectionTitle from "./SectionTitle";
 
 export default function Certificates() {
   const { t } = useLang();
+
   return (
-    <section id="sertifikat" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-20">
+    <section id="sertifikat" className="mx-auto max-w-5xl scroll-mt-28 px-6 py-24 md:scroll-mt-20">
       <SectionTitle kicker={t.certs.kicker} title={t.certs.title} />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <ul className="m-0 list-none p-0">
         {certificates.map((c) => (
-          <a
-            key={c.url}
-            href={c.url}
-            target="_blank"
-            rel="noreferrer"
-            className="glass group flex items-center gap-4 rounded-2xl p-5 transition hover:-translate-y-1"
-          >
-            {/* ikon medali */}
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-leaf/20 to-mint/20 text-leaf ring-1 ring-leaf/30">
-              <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="9" r="6" />
-                <path d="M9 14.5 7.5 22 12 19.5 16.5 22 15 14.5" strokeLinejoin="round" />
-              </svg>
-            </div>
-            <div className="min-w-0 flex-1">
-              <h3 className="font-display font-semibold leading-snug text-fog group-hover:text-leaf">
+          <li key={c.url} className="border-b border-rule">
+            <a
+              href={c.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-baseline gap-5 py-5 transition-colors hover:text-brass"
+            >
+              <span className="text-[0.9375rem] leading-snug text-bone transition-colors group-hover:text-brass">
                 {c.title}
-              </h3>
-              <p className="mt-0.5 text-xs text-mist">{c.issuer}</p>
-            </div>
-            <span className="text-mist transition group-hover:translate-x-1 group-hover:text-leaf">
-              ↗
-            </span>
-          </a>
+              </span>
+              <span className="ml-auto shrink-0 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ash">
+                {c.issuer}
+              </span>
+              <span
+                className="shrink-0 font-mono text-[0.6875rem] text-ash transition-transform group-hover:translate-x-1 group-hover:text-brass"
+                aria-hidden
+              >
+                →
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

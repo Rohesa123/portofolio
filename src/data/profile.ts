@@ -1,5 +1,10 @@
 // Data statis profil — diambil dari GitHub @Rohesa123 (per Juni 2026).
 // Dipisah dari komponen agar gampang di-update sewaktu-waktu.
+//
+// Data berbentuk daftar (sosial, sertifikat, tech stack, proyek) ada di
+// content.json — tambah/ubah item di sana, tidak perlu menyentuh file ini.
+
+import content from "./content.json";
 
 export const profile = {
   name: "Rohesa Sidiq Permana",
@@ -24,7 +29,7 @@ export const company = {
   url: "https://dak.co.id/",
 } as const;
 
-// Tautan media sosial. `type` dipakai untuk memilih ikon.
+// Tautan media sosial. `type` dipakai untuk memilih ikon (lihat SocialLinks.tsx).
 export type SocialType =
   | "github"
   | "linkedin"
@@ -34,23 +39,16 @@ export type SocialType =
   | "email"
   | "blog";
 
-export const socials: { type: SocialType; label: string; url: string }[] = [
-  { type: "github", label: "GitHub", url: "https://github.com/Rohesa123" },
-  { type: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/in/rohesa-sidiq-permana-91400927a/" },
-  { type: "twitter", label: "Twitter / X", url: "https://twitter.com/RohesaSidiqP" },
-  { type: "instagram", label: "Instagram", url: "https://www.instagram.com/rohesasidiqpermana05/" },
-  { type: "facebook", label: "Facebook", url: "https://facebook.com/rohesa.permana.9" },
-  { type: "blog", label: "Blog", url: "https://rohesa.vercel.app" },
-  { type: "email", label: "Email", url: "mailto:rohesasidiqpermana05@gmail.com" },
-];
+export type Social = { type: SocialType; label: string; url: string };
 
-// Sertifikat Dicoding (judul diambil dari halaman sertifikat).
-export const certificates: { title: string; issuer: string; url: string }[] = [
-  { title: "Belajar Dasar AI", issuer: "Dicoding", url: "https://www.dicoding.com/certificates/0LZ05R193X65" },
-  { title: "Belajar Dasar Pemrograman JavaScript", issuer: "Dicoding", url: "https://www.dicoding.com/certificates/07Z6J4582XQR" },
-  { title: "Belajar Dasar Pemrograman Web", issuer: "Dicoding", url: "https://www.dicoding.com/certificates/L4PQ21LKOZO1" },
-  { title: "Memulai Pemrograman dengan Kotlin", issuer: "Dicoding", url: "https://www.dicoding.com/certificates/L4PQE4GM7PO1" },
-];
+/** Teks dwibahasa di content.json. */
+export type Localized = { id: string; en: string };
+
+export const socials = content.socials as Social[];
+
+export type Certificate = { title: string; issuer: string; url: string };
+
+export const certificates: Certificate[] = content.certificates;
 
 // Access key Web3Forms — daftar gratis di https://web3forms.com (cukup masukkan
 // email, key dikirim ke email Anda), lalu tempel di sini. Selama masih kosong,
@@ -89,29 +87,19 @@ export const statFields = [
   { key: "createdYear", labelKey: "since" },
 ] as const;
 
-// Level kanonik (label-nya diterjemahkan di i18n).
-export type TechLevel = "primary" | "proficient" | "familiar";
-export type Tech = { name: string; level: TechLevel };
+export type Tech = { name: string; description: Localized };
 
-// Diurutkan dari yang paling dominan di portofolio. Deskripsi tiap item
-// ada di kamus i18n (strings.ts → tech.details), dipetakan lewat `name`.
-export const techStack: Tech[] = [
-  { name: "Java", level: "primary" },
-  { name: "Spring Boot", level: "primary" },
-  { name: "Security / JWT", level: "proficient" },
-  { name: "Flutter / Dart", level: "proficient" },
-  { name: "Laravel / PHP", level: "familiar" },
-  { name: "React / TypeScript", level: "familiar" },
-];
+// Diurutkan dari yang paling dominan di portofolio.
+export const techStack = content.techStack as Tech[];
 
-// Teks deskripsi & highlight proyek ada di i18n (strings.ts → projects.items),
-// dipetakan lewat `name`.
 export type Project = {
   name: string;
   language: string;
   stars?: number;
+  /** Rujukan spesifikasi resmi, kalau proyeknya mengimplementasikan sebuah standar. */
+  spec?: string;
+  description: Localized;
+  highlight: Localized;
 };
 
-export const featuredProjects: Project[] = [
-  { name: "totp", language: "Java", stars: 1 },
-];
+export const featuredProjects: Project[] = content.projects;

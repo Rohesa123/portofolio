@@ -27,27 +27,23 @@ const icons: Record<SocialType, ReactNode> = {
 };
 
 type Props = {
-  size?: "sm" | "md";
   className?: string;
 };
 
-export default function SocialLinks({ size = "md", className = "" }: Props) {
-  const box = size === "sm" ? "h-9 w-9" : "h-11 w-11";
-  const ic = size === "sm" ? "h-4 w-4" : "h-5 w-5";
-
+export default function SocialLinks({ className = "" }: Props) {
   return (
-    <div className={`flex flex-wrap items-center gap-2.5 ${className}`}>
+    <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {socials.map((s) => (
         <a
-          key={s.type}
+          key={s.url}
           href={s.url}
           target={s.type === "email" ? undefined : "_blank"}
           rel="noreferrer"
           title={s.label}
           aria-label={s.label}
-          className={`glass grid ${box} place-items-center rounded-xl text-mist transition hover:-translate-y-0.5 hover:text-leaf`}
+          className="grid h-9 w-9 place-items-center border border-rule text-ash transition-colors hover:border-brass/60 hover:text-brass"
         >
-          <svg viewBox="0 0 24 24" fill="currentColor" className={ic}>
+          <svg viewBox="0 0 24 24" fill="currentColor" className="h-[0.9375rem] w-[0.9375rem]">
             {icons[s.type]}
           </svg>
         </a>

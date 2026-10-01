@@ -6,96 +6,95 @@ import SocialLinks from "./SocialLinks";
 export default function ProfileHeader() {
   const { snapshot } = useGithub();
   const { t } = useLang();
-  const [firstName, ...rest] = snapshot.name.split(" ");
-  const lastName = rest.join(" ");
+  const nameLines = snapshot.name.split(" ").filter(Boolean);
 
   return (
-    <header id="top" className="relative overflow-hidden">
-      {/* latar: grid + blob hijau yang menggumpal */}
-      <div className="bg-grid pointer-events-none absolute inset-0" />
-      <div className="animate-drift pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-leaf/20 blur-3xl" />
-      <div className="animate-drift pointer-events-none absolute -right-10 top-40 h-80 w-80 rounded-full bg-mint/15 blur-3xl [animation-delay:4s]" />
-
-      <div className="relative mx-auto grid max-w-5xl items-center gap-12 px-6 pb-20 pt-36 md:grid-cols-[1.2fr_1fr] md:pt-44">
-        {/* kiri: teks */}
-        <div className="text-center md:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-leaf/30 bg-leaf/10 px-3 py-1 text-xs font-medium text-leaf">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-leaf opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-leaf" />
-            </span>
+    <header id="top" className="mx-auto max-w-5xl px-6 pb-16 pt-32 md:pt-36">
+      <div className="grid gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-14">
+        {/* kiri: plat nama */}
+        <div>
+          <p className="spec-label rise flex items-center gap-2.5">
+            <span className="h-1.5 w-1.5 shrink-0 bg-brass" aria-hidden />
             {t.hero.open}
-          </div>
-
-          <h1 className="mt-5 font-display text-4xl font-bold leading-tight text-fog sm:text-6xl">
-            {firstName}{" "}
-            <span className="text-gradient">{lastName}</span>
-          </h1>
-
-          <p className="mt-3 font-mono text-sm text-leaf sm:text-base">
-            {"<"} {profile.role} {"/>"}
           </p>
 
-          <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-mist md:mx-0">
+          <h1 className="nameplate rise mt-7 text-[2.75rem] uppercase leading-[0.88] text-bone sm:text-[4rem] lg:text-[4.75rem]">
+            {nameLines.map((line, i) => (
+              <span key={line} className="block" style={{ animationDelay: `${80 + i * 70}ms` }}>
+                {line}
+              </span>
+            ))}
+          </h1>
+
+          <p
+            className="rise mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-bone"
+            style={{ animationDelay: "300ms" }}
+          >
+            {t.hero.role}
+            <span className="h-px w-6 bg-brass" aria-hidden />
+            <span className="text-ash">{snapshot.location ?? profile.location}</span>
+          </p>
+
+          <p
+            className="rise mt-6 max-w-md text-[0.9375rem] leading-relaxed text-ash"
+            style={{ animationDelay: "360ms" }}
+          >
             {t.hero.tagline}
           </p>
 
-          <div className="mt-6 flex flex-wrap justify-center gap-2 md:justify-start">
+          <ul
+            className="rise mt-7 flex list-none flex-wrap gap-2 p-0"
+            style={{ animationDelay: "420ms" }}
+          >
             {t.hero.badges.map((b) => (
-              <span
+              <li
                 key={b}
-                className="rounded-lg border border-line bg-elevated/60 px-3 py-1 font-mono text-xs text-fog/80"
+                className="border border-rule px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-ash"
               >
                 {b}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
+          <div
+            className="rise mt-9 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: "480ms" }}
+          >
             <a
               href="#proyek"
-              className="rounded-xl bg-gradient-to-r from-lime to-mint px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-leaf/20 transition hover:scale-105"
+              className="bg-bone px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink transition-opacity hover:opacity-85"
             >
               {t.hero.viewProjects}
             </a>
             <a
               href="#kontak"
-              className="rounded-xl border border-line px-6 py-3 text-sm font-semibold text-fog transition hover:border-leaf/50 hover:text-leaf"
+              className="border border-rule px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-bone transition-colors hover:border-brass/60 hover:text-brass"
             >
               {t.hero.contactMe}
             </a>
           </div>
 
-          <div className="mt-6 flex justify-center md:justify-start">
-            <SocialLinks size="sm" />
+          <div className="rise mt-9" style={{ animationDelay: "540ms" }}>
+            <SocialLinks />
           </div>
         </div>
 
-        {/* kanan: avatar dengan cincin berputar + foto yang dilebur ke tema */}
-        <div className="flex justify-center">
-          <div className="relative h-60 w-60">
-            {/* cincin gradient (lebih lembut, tidak neon) */}
-            <div className="animate-spin-slow absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent,#3ecf8e,#6ee7b7,#2dd4bf,transparent)] opacity-55 blur-[1px]" />
-            <div className="animate-pulse-glow absolute inset-2 rounded-full bg-leaf/20 blur-2xl" />
-
-            {/* bingkai foto: overflow-hidden supaya overlay ikut melengkung */}
-            <div className="animate-float absolute inset-3 overflow-hidden rounded-full border border-line bg-elevated shadow-2xl">
-              <img
-                src={snapshot.avatar}
-                alt={snapshot.name}
-                className="h-full w-full object-cover"
-                style={{ filter: "saturate(0.9) contrast(1.06) brightness(0.96)" }}
-              />
-              {/* scrim bawah: foto memudar ke warna tema, badge jadi nyatu */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-ink/80 via-ink/10 to-transparent" />
-              {/* vignette tepi: melebur background foto ke warna tema */}
-              <div className="absolute inset-0 rounded-full shadow-[inset_0_0_48px_14px_var(--avatar-vignette)]" />
-              {/* highlight halus di atas biar tidak flat */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/5 to-transparent" />
-            </div>
-
-            <span className="absolute -bottom-2 left-1/2 z-10 -translate-x-1/2 rounded-full border border-line bg-elevated px-3 py-1 font-mono text-xs text-leaf shadow-lg">
-              📍 {snapshot.location ?? profile.location}
+        {/* kanan: potret hitam-putih */}
+        <div className="rise flex flex-col gap-3" style={{ animationDelay: "220ms" }}>
+          <div className="relative border border-rule bg-panel">
+            <img
+              src={snapshot.avatar}
+              alt={snapshot.name}
+              width={640}
+              height={800}
+              className="aspect-[4/5] w-full object-cover"
+              style={{ filter: "var(--photo-filter)" }}
+            />
+            <span
+              className="absolute bottom-0 right-0 bg-ink/85 px-2.5 py-1.5 font-mono text-[0.625rem] uppercase tracking-[0.16em] text-ash"
+              aria-hidden
+            >
+              @{profile.username}
             </span>
           </div>
         </div>

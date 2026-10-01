@@ -12,11 +12,12 @@ const id = {
   },
   hero: {
     open: "Terbuka untuk kolaborasi",
+    role: "Backend Engineer",
     tagline:
       "Membangun backend yang kokoh, aman, dan rapi dengan Java & Spring Boot.",
-    badges: ["Backend", "Spring Boot", "Security / JWT", "Open Source"],
-    viewProjects: "Lihat Proyek",
-    contactMe: "Hubungi Saya",
+    badges: ["Java", "Spring Boot", "Security / JWT", "Open Source"],
+    viewProjects: "Lihat proyek",
+    contactMe: "Hubungi saya",
   },
   stats: {
     repos: "Repositori",
@@ -30,7 +31,7 @@ const id = {
   },
   about: {
     kicker: "Tentang",
-    title: "Halo, saya Rohesa 👋",
+    title: "Backend, dengan perhatian pada keamanan",
     bio: "Backend Developer di PT Digital Amore Kriyanesia (DAK). Saya fokus membangun REST API dan sistem yang aman menggunakan Java & Spring Boot, dengan minat khusus pada keamanan aplikasi (JWT & 2FA). Di luar itu saya juga membangun aplikasi mobile dan web, serta terus belajar teknologi baru.",
     intro:
       "Seorang developer backend-focused yang membangun fondasinya di atas ekosistem Java — terstruktur, memperhatikan keamanan, dan terus belajar hal baru.",
@@ -54,34 +55,20 @@ const id = {
     ],
   },
   tech: {
-    kicker: "Tech Stack",
-    title: "Yang Saya Pakai",
-    levels: { primary: "Utama", proficient: "Mahir", familiar: "Familiar" },
-    details: {
-      Java: "Bahasa utama — fondasi dari hampir semua proyek backend",
-      "Spring Boot": "REST API, scheduling, dependency injection",
-      "Security / JWT": "Autentikasi token, TOTP / 2FA",
-      "Flutter / Dart": "Aplikasi mobile lintas platform",
-      "Laravel / PHP": "Aplikasi web & CRUD",
-      "React / TypeScript": "Frontend modern (repo ini ✨)",
-    } as Record<string, string>,
+    kicker: "Stack",
+    title: "Yang saya pakai",
+    columns: { name: "Teknologi" },
   },
   languages: {
     kicker: "Bahasa",
-    title: "Distribusi Bahasa di GitHub",
-    note: "* Dihitung dari bahasa utama tiap repositori publik (data live GitHub).",
+    title: "Distribusi bahasa di GitHub",
+    repoCount: (n: number) => `${n} repo`,
+    note: "Dihitung dari bahasa utama tiap repositori publik, langsung dari GitHub.",
   },
   projects: {
-    kicker: "Proyek Unggulan",
-    title: "Karya Terpilih",
+    kicker: "Proyek unggulan",
+    title: "Karya terpilih",
     viewAll: "Lihat semua repositori di GitHub",
-    items: {
-      totp: {
-        description:
-          "Implementasi Time-based One-Time Password (TOTP) di Java — algoritma di balik kode 2FA seperti Google Authenticator. Menghasilkan & memverifikasi kode sekali pakai berbasis waktu.",
-        highlight: "Keamanan / 2FA",
-      },
-    } as Record<string, { description: string; highlight: string }>,
   },
   certs: {
     kicker: "Sertifikat",
@@ -89,24 +76,24 @@ const id = {
   },
   contact: {
     kicker: "Kontak",
-    title: "Mari Terhubung",
+    title: "Mari terhubung",
     intro:
       "Punya proyek, pertanyaan, atau ingin berkolaborasi? Kirim pesan lewat form di samping, atau temukan saya di:",
     currentlyAt: "Saat ini bekerja di",
     companyDesc:
       "Software house & IT consulting yang membangun perangkat lunak modern untuk bisnis dan institusi.",
     namePlaceholder: "Nama",
-    emailPlaceholder: "Email Anda",
-    messagePlaceholder: "Tulis pesan Anda…",
-    send: "Kirim Pesan",
+    emailPlaceholder: "Email",
+    messagePlaceholder: "Pesan",
+    send: "Kirim pesan",
     sending: "Mengirim…",
-    successSent: "✓ Terima kasih! Pesan terkirim.",
-    successMailto: "✓ Terima kasih! Aplikasi email Anda akan terbuka.",
-    errorPrefix: "Gagal kirim",
-    emailDirect: "Email langsung saja",
+    successSent: "Pesan terkirim. Terima kasih.",
+    successMailto: "Aplikasi email Anda akan terbuka.",
+    errorPrefix: "Pesan gagal terkirim",
+    emailDirect: "Kirim email langsung",
   },
   footer: {
-    builtWith: "dibuat dengan React + TypeScript + Tailwind",
+    builtWith: "React · TypeScript · Tailwind",
   },
   rel: {
     now: "baru saja",
@@ -133,11 +120,12 @@ const en: Strings = {
   },
   hero: {
     open: "Open to collaboration",
+    role: "Backend Engineer",
     tagline:
       "Building robust, secure, and clean backends with Java & Spring Boot.",
-    badges: ["Backend", "Spring Boot", "Security / JWT", "Open Source"],
-    viewProjects: "View Projects",
-    contactMe: "Contact Me",
+    badges: ["Java", "Spring Boot", "Security / JWT", "Open Source"],
+    viewProjects: "View projects",
+    contactMe: "Get in touch",
   },
   stats: {
     repos: "Repositories",
@@ -151,7 +139,7 @@ const en: Strings = {
   },
   about: {
     kicker: "About",
-    title: "Hi, I'm Rohesa 👋",
+    title: "Backend work, with security in mind",
     bio: "Backend Developer at PT Digital Amore Kriyanesia (DAK). I focus on building secure REST APIs and systems with Java & Spring Boot, with a special interest in application security (JWT & 2FA). Beyond that, I also build mobile and web apps, and keep learning new technologies.",
     intro:
       "A backend-focused developer who built his foundation on the Java ecosystem — structured, security-conscious, and always learning.",
@@ -175,34 +163,20 @@ const en: Strings = {
     ],
   },
   tech: {
-    kicker: "Tech Stack",
-    title: "What I Use",
-    levels: { primary: "Primary", proficient: "Proficient", familiar: "Familiar" },
-    details: {
-      Java: "Primary language — the foundation of almost every backend project",
-      "Spring Boot": "REST APIs, scheduling, dependency injection",
-      "Security / JWT": "Token authentication, TOTP / 2FA",
-      "Flutter / Dart": "Cross-platform mobile apps",
-      "Laravel / PHP": "Web apps & CRUD",
-      "React / TypeScript": "Modern frontend (this repo ✨)",
-    },
+    kicker: "Stack",
+    title: "What I use",
+    columns: { name: "Technology" },
   },
   languages: {
     kicker: "Languages",
-    title: "Language Distribution on GitHub",
-    note: "* Computed from the primary language of each public repository (live GitHub data).",
+    title: "Language distribution on GitHub",
+    repoCount: (n: number) => `${n} repo${n === 1 ? "" : "s"}`,
+    note: "Computed from the primary language of each public repository, straight from GitHub.",
   },
   projects: {
-    kicker: "Featured Project",
-    title: "Selected Work",
+    kicker: "Featured project",
+    title: "Selected work",
     viewAll: "View all repositories on GitHub",
-    items: {
-      totp: {
-        description:
-          "A Java implementation of Time-based One-Time Password (TOTP) — the algorithm behind 2FA codes like Google Authenticator. Generates and verifies time-based one-time codes.",
-        highlight: "Security / 2FA",
-      },
-    },
   },
   certs: {
     kicker: "Certificates",
@@ -210,24 +184,24 @@ const en: Strings = {
   },
   contact: {
     kicker: "Contact",
-    title: "Let's Connect",
+    title: "Let's connect",
     intro:
       "Have a project, a question, or want to collaborate? Send a message using the form, or find me on:",
     currentlyAt: "Currently working at",
     companyDesc:
       "A software house & IT consultancy building modern software for businesses and institutions.",
     namePlaceholder: "Name",
-    emailPlaceholder: "Your email",
-    messagePlaceholder: "Write your message…",
-    send: "Send Message",
+    emailPlaceholder: "Email",
+    messagePlaceholder: "Message",
+    send: "Send message",
     sending: "Sending…",
-    successSent: "✓ Thank you! Your message has been sent.",
-    successMailto: "✓ Thank you! Your email app will open.",
-    errorPrefix: "Failed to send",
-    emailDirect: "Just email directly",
+    successSent: "Message sent. Thank you.",
+    successMailto: "Your email app will open.",
+    errorPrefix: "Message failed to send",
+    emailDirect: "Email directly",
   },
   footer: {
-    builtWith: "built with React + TypeScript + Tailwind",
+    builtWith: "React · TypeScript · Tailwind",
   },
   rel: {
     now: "just now",

@@ -61,92 +61,107 @@ export default function Contact() {
     }
   };
 
-  const inputCls =
-    "w-full rounded-xl border border-line bg-elevated/60 px-4 py-3 text-sm text-fog placeholder:text-mist/60 outline-none transition focus:border-leaf/60 focus:ring-2 focus:ring-leaf/20";
+  // Input bergaris bawah saja — seperti isian pada formulir cetak.
+  const fieldCls =
+    "w-full border-0 border-b border-rule bg-transparent px-0 py-2.5 text-[0.9375rem] text-bone outline-none transition-colors placeholder:text-ash/50 focus:border-brass";
 
   return (
-    <section id="kontak" className="relative scroll-mt-24 py-20">
-      <div className="bg-grid pointer-events-none absolute inset-0 opacity-40" />
-      <div className="relative mx-auto max-w-5xl px-6">
-        <SectionTitle kicker={t.contact.kicker} title={t.contact.title} />
+    <section id="kontak" className="mx-auto max-w-5xl scroll-mt-28 px-6 py-24 md:scroll-mt-20">
+      <SectionTitle kicker={t.contact.kicker} title={t.contact.title} />
 
-        <div className="grid gap-6 md:grid-cols-[1fr_1.1fr]">
-          {/* kiri: info */}
-          <div className="space-y-5">
-            <p className="text-base leading-relaxed text-mist">{t.contact.intro}</p>
+      <div className="grid gap-12 md:grid-cols-[1fr_1.1fr] md:gap-14">
+        {/* kiri: keterangan */}
+        <div>
+          <p className="m-0 max-w-md text-[0.9375rem] leading-relaxed text-ash">
+            {t.contact.intro}
+          </p>
 
-            <a
-              href={`mailto:${profile.email}`}
-              className="glass flex items-center gap-3 rounded-2xl p-4 transition hover:-translate-y-0.5"
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-leaf/15 text-leaf">
-                @
-              </span>
-              <span className="font-mono text-sm text-fog">{profile.email}</span>
-            </a>
+          <a
+            href={`mailto:${profile.email}`}
+            className="mt-7 flex items-baseline gap-3 border-b border-rule pb-3 font-mono text-sm text-bone transition-colors hover:border-brass hover:text-brass"
+          >
+            {profile.email}
+          </a>
 
-            <a
-              href={company.url}
-              target="_blank"
-              rel="noreferrer"
-              className="glass block rounded-2xl p-5 transition hover:-translate-y-0.5"
-            >
-              <p className="text-xs uppercase tracking-wider text-mist">
-                {t.contact.currentlyAt}
-              </p>
-              <p className="mt-1 font-display text-lg font-semibold text-fog">
-                {company.name} <span className="text-leaf">· {company.role}</span>
-              </p>
-              <p className="mt-1 text-sm text-mist">{t.contact.companyDesc}</p>
-            </a>
+          <a
+            href={company.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 block border border-rule bg-panel p-5 transition-colors hover:border-brass/50"
+          >
+            <p className="spec-label m-0">{t.contact.currentlyAt}</p>
+            <p className="heading m-0 mt-3 text-base text-bone">{company.name}</p>
+            <p className="m-0 mt-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-brass">
+              {company.role}
+            </p>
+            <p className="m-0 mt-3 text-[0.875rem] leading-relaxed text-ash">
+              {t.contact.companyDesc}
+            </p>
+          </a>
 
-            <SocialLinks size="sm" />
+          <div className="mt-8">
+            <SocialLinks />
           </div>
+        </div>
 
-          {/* kanan: form */}
-          <form onSubmit={handleSubmit} className="glass space-y-4 rounded-3xl p-6 sm:p-7">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <input name="name" required placeholder={t.contact.namePlaceholder} className={inputCls} />
+        {/* kanan: formulir */}
+        <form onSubmit={handleSubmit} className="border border-rule bg-panel p-6 sm:p-8">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="contact-name" className="spec-label mb-2 block">
+                {t.contact.namePlaceholder}
+              </label>
+              <input id="contact-name" name="name" required className={fieldCls} />
+            </div>
+            <div>
+              <label htmlFor="contact-email" className="spec-label mb-2 block">
+                {t.contact.emailPlaceholder}
+              </label>
               <input
+                id="contact-email"
                 name="email"
                 type="email"
                 required
-                placeholder={t.contact.emailPlaceholder}
-                className={inputCls}
+                className={fieldCls}
               />
             </div>
+          </div>
+
+          <div className="mt-6">
+            <label htmlFor="contact-message" className="spec-label mb-2 block">
+              {t.contact.messagePlaceholder}
+            </label>
             <textarea
+              id="contact-message"
               name="message"
               required
               rows={5}
-              placeholder={t.contact.messagePlaceholder}
-              className={`${inputCls} resize-none`}
+              className={`${fieldCls} resize-none`}
             />
+          </div>
 
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="w-full rounded-xl bg-gradient-to-r from-lime to-mint px-6 py-3 text-sm font-semibold text-ink shadow-lg shadow-leaf/20 transition hover:scale-[1.02] disabled:opacity-60"
-            >
-              {status === "sending" ? t.contact.sending : t.contact.send}
-            </button>
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="mt-8 w-full bg-bone px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink transition-opacity hover:opacity-85 disabled:opacity-50"
+          >
+            {status === "sending" ? t.contact.sending : t.contact.send}
+          </button>
 
-            {status === "success" && (
-              <p className="text-center text-sm text-leaf">
-                {WEB3FORMS_ACCESS_KEY ? t.contact.successSent : t.contact.successMailto}
-              </p>
-            )}
+          <p className="m-0 mt-4 min-h-5 text-[0.8125rem] text-ash" aria-live="polite">
+            {status === "success" &&
+              (WEB3FORMS_ACCESS_KEY ? t.contact.successSent : t.contact.successMailto)}
             {status === "error" && (
-              <p className="text-center text-sm text-amber-400">
+              <span className="text-alert">
                 {t.contact.errorPrefix} ({error}).{" "}
-                <a href={`mailto:${profile.email}`} className="underline">
+                <a href={`mailto:${profile.email}`} className="underline underline-offset-2">
                   {t.contact.emailDirect}
                 </a>
                 .
-              </p>
+              </span>
             )}
-          </form>
-        </div>
+          </p>
+        </form>
       </div>
     </section>
   );

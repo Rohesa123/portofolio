@@ -1,0 +1,80 @@
+{
+  "socials": [
+    { "type": "github", "label": "GitHub", "url": "https://github.com/Rohesa123" },
+    { "type": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/in/rohesa-sidiq-permana-91400927a/" },
+    { "type": "twitter", "label": "Twitter / X", "url": "https://twitter.com/RohesaSidiqP" },
+    { "type": "instagram", "label": "Instagram", "url": "https://www.instagram.com/rohesasidiqpermana05/" },
+    { "type": "facebook", "label": "Facebook", "url": "https://facebook.com/rohesa.permana.9" },
+    { "type": "blog", "label": "Blog", "url": "https://rohesa.vercel.app" },
+    { "type": "email", "label": "Email", "url": "mailto:rohesasidiqpermana05@gmail.com" }
+  ],
+
+  "certificates": [
+    { "title": "Belajar Dasar AI", "issuer": "Dicoding", "url": "https://www.dicoding.com/certificates/0LZ05R193X65" },
+    { "title": "Belajar Dasar Pemrograman JavaScript", "issuer": "Dicoding", "url": "https://www.dicoding.com/certificates/07Z6J4582XQR" },
+    { "title": "Belajar Dasar Pemrograman Web", "issuer": "Dicoding", "url": "https://www.dicoding.com/certificates/L4PQ21LKOZO1" },
+    { "title": "Memulai Pemrograman dengan Kotlin", "issuer": "Dicoding", "url": "https://www.dicoding.com/certificates/L4PQE4GM7PO1" }
+  ],
+
+  "techStack": [
+    {
+      "name": "Java",
+      "description": {
+        "id": "Bahasa utama — fondasi dari hampir semua proyek backend",
+        "en": "Primary language — the foundation of almost every backend project"
+      }
+    },
+    {
+      "name": "Spring Boot",
+      "description": {
+        "id": "REST API, scheduling, dependency injection",
+        "en": "REST APIs, scheduling, dependency injection"
+      }
+    },
+    {
+      "name": "Security / JWT",
+      "description": {
+        "id": "Autentikasi token, TOTP / 2FA",
+        "en": "Token authentication, TOTP / 2FA"
+      }
+    },
+    {
+      "name": "Flutter / Dart",
+      "description": {
+        "id": "Aplikasi mobile lintas platform",
+        "en": "Cross-platform mobile apps"
+      }
+    },
+    {
+      "name": "Laravel / PHP",
+      "description": {
+        "id": "Aplikasi web & CRUD",
+        "en": "Web apps & CRUD"
+      }
+    },
+    {
+      "name": "React / TypeScript",
+      "description": {
+        "id": "Frontend modern — termasuk situs ini",
+        "en": "Modern frontend — including this site"
+      }
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "totp",
+      "language": "Java",
+      "stars": 1,
+      "spec": "RFC 6238",
+      "description": {
+        "id": "Implementasi Time-based One-Time Password (TOTP) di Java — algoritma di balik kode 2FA seperti Google Authenticator. Menghasilkan & memverifikasi kode sekali pakai berbasis waktu.",
+        "en": "A Java implementation of Time-based One-Time Password (TOTP) — the algorithm behind 2FA codes like Google Authenticator. Generates and verifies time-based one-time codes."
+      },
+      "highlight": {
+        "id": "Keamanan / 2FA",
+        "en": "Security / 2FA"
+      }
+    }
+  ]
+}
